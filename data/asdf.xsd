@@ -18,7 +18,7 @@
     <xs:complexType>
       <xs:all>
         <xs:element ref="header" minOccurs="0"/>
-        <xs:element ref="reproduction_setup" minOccurs="0"/>
+        <xs:element ref="reproduction_class" minOccurs="0"/>
         <xs:element ref="scene_setup" minOccurs="0"/>
         <xs:element ref="score" minOccurs="0"/>
       </xs:all>
@@ -41,7 +41,9 @@
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="reproduction_setup">
+  <xs:element name="reproduction_class" abstract="true" />
+
+  <xs:element name="reproduction_setup" substitutionGroup="reproduction_class">
     <xs:annotation><xs:documentation xml:lang="en">
         This section is for the setup of the reproduction system. This can
         be a loudspeaker setup or headphones or ...
@@ -57,6 +59,17 @@
           </xs:complexType>
         </xs:element>
       </xs:choice>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="distributed_reproduction_setup" substitutionGroup="reproduction_class">
+    <xs:annotation><xs:documentation xml:lang="en">
+        This section is for the setup of a distributed reproduction system. It
+        is defined by one server and n clients, which each hold a reproduction
+        setup. This is useful in large-scale loudspeaker setups such as wfs or
+        vbap.
+    </xs:documentation></xs:annotation>
+    <xs:complexType>
     </xs:complexType>
   </xs:element>
 
