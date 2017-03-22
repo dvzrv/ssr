@@ -81,7 +81,10 @@
     <xs:annotation><xs:documentation xml:lang="en">
         The server is a host, defined by hostname, port and description. It
         does not hold any part of the reproduction_setup itself. For that see
-        element type client.
+        element type client. In a distributed_reproduction_setup it can only
+        occur once.
+        The hostname should be resolvable (by all clients and itself) within the
+        network in which it is used.
     </xs:documentation></xs:annotation>
     <xs:complexType mixed="true">
       <xs:all>
@@ -97,13 +100,15 @@
         The client is a host, defined by hostname, port, description and
         reproduction_setup. In a distributed_reproduction_setup it can occur
         several times.
+        The hostname should be resolvable (by all other clients, the server and
+        itself) within the network in which it is used.
     </xs:documentation></xs:annotation>
     <xs:complexType mixed="true">
       <xs:all>
         <xs:element name="hostname" type="xs:string" minOccurs="1"/>
         <xs:element name="port" type="xs:integer" minOccurs="1"/>
         <xs:element name="description" type="xs:string" minOccurs="0"/>
-        <xs:element ref="reproduction_setup" minOccurs="0"/>
+        <xs:element ref="reproduction_setup" minOccurs="1"/>
       </xs:all>
     </xs:complexType>
   </xs:element>
