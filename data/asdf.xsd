@@ -54,6 +54,7 @@
         <xs:element name="skip">
           <xs:complexType>
             <xs:attribute name="number" type="xs:positiveInteger" default="1"/>
+            <xs:attribute ref="hostname" use="optional"/>
           </xs:complexType>
         </xs:element>
       </xs:choice>
@@ -182,6 +183,7 @@
   <xs:element name="gain" type="xs:float"/> <!-- in dB! -->
   <xs:attribute name="id" type="xs:ID"/>
   <xs:attribute name="name" type="xs:token"/>
+  <xs:attribute name="hostname" type="xs:token"/>
   <xs:attribute name="volume" type="xs:float"/> <!-- in dB! -->
   <xs:attribute name="delay" type="xs:decimal"/>
   <xs:attribute name="weight" type="xs:decimal"/>
@@ -252,6 +254,7 @@
         <xs:element ref="orientation"/> <!-- required -->
       </xs:all>
       <xs:attribute ref="name"/>
+      <xs:attribute ref="hostname"/>
       <xs:attribute ref="delay"/>
       <xs:attribute ref="weight"/>
       <xs:attribute name="model" type="loudspeaker_model_t"/>
@@ -312,6 +315,7 @@
       <!-- <xs:attribute ref="id" use="optional"/> -->
       <xs:attribute name="number" type="more_than_one" use="required"/>
       <xs:attribute ref="name" use="optional"/>
+      <xs:attribute ref="hostname"/>
 
       <!-- extensible by any attribute: -->
       <xs:anyAttribute processContents="skip"/>
@@ -356,6 +360,7 @@
       </xs:sequence>
       <xs:attribute name="number" type="more_than_one" use="required"/>
       <xs:attribute ref="name"/>
+      <xs:attribute ref="hostname"/>
       <!-- extensible by any attribute -->
       <xs:anyAttribute processContents="skip"/>
     </xs:complexType>
