@@ -45,6 +45,7 @@ struct Loudspeaker : DirectionalPoint
   {
     unknown = 0, ///< unknown loudspeaker type
     // TODO: find better names and better descriptions
+    alien,  //< not belonging to this instance of ssr
     normal,      ///< normal loudspeaker
     subwoofer    ///< always on, regardless of source positions
   };
@@ -80,6 +81,7 @@ struct Loudspeaker : DirectionalPoint
     input >> temp;
     //if (input.fail()) return input; // redundant?
     if (temp == "normal") model = normal;
+    else if (temp == "alien") model = alien;
     else if (temp == "subwoofer") model = subwoofer;
     // everything else (including empty string on failure) doesn't change model
     else input.setstate(std::ios_base::badbit);
@@ -90,6 +92,9 @@ struct Loudspeaker : DirectionalPoint
   {
     switch (model)
     {
+      case alien:
+        output << "alien";
+        break;
       case normal:
         output << "normal";
         break;
