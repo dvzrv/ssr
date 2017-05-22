@@ -11,6 +11,15 @@ OSCFunc.trace(true, true);
 
 // server checks (sclang is the client)
 (
-OSCFunc.trace(true, true);
+//OSCFunc.trace(true, true);
+//~responder_scenemastersignallevel = OSCFunc({ arg msg, time, addr, recvPort; [msg, time, addr, recvPort].postln; }, '/scene/master_signal_level');
+~responder_scenemastersignallevel = OSCFunc(
+  {
+    arg msg, time, addr, recvPort;
+    [msg, time, addr, recvPort].postln;
+    addr.sendMsg('/subscribe', true);
+  },
+  '/poll'
+);
 )
 
